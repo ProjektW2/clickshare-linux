@@ -24,8 +24,9 @@ echo "Using WineHQ repository for '$CODENAME'"
 
 dpkg --add-architecture i386
 mkdir -pm755 /etc/apt/keyrings
-wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-wget -NP /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/$CODENAME/winehq-$CODENAME.sources"
+curl -fsSL -o /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+curl -fsSL -o "/etc/apt/sources.list.d/winehq-$CODENAME.sources" \
+    "https://dl.winehq.org/wine-builds/ubuntu/dists/$CODENAME/winehq-$CODENAME.sources"
 
 apt-get update
 apt-get install -y --install-recommends winehq-stable
